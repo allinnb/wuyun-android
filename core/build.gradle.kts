@@ -18,6 +18,8 @@ dependencies {
     // 节气库：lunar-java（cn.6tail:lunar），与网页版 lunar-javascript 同源
     api(libs.lunar)
     api(libs.kotlinx.serialization.json)
+    // 二维码（分享图），纯 Java，Android/JVM 都能跑
+    api(libs.zxing)
 
     testImplementation(libs.junit)
 }
@@ -30,6 +32,8 @@ sourceSets.named("test") {
 
 tasks.test {
     useJUnit()
+    // 测试里用仓库根目录作为工作目录（样图写到 reference/share-samples/）
+    workingDir = rootProject.projectDir
     testLogging {
         events("passed", "failed", "skipped")
     }

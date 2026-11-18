@@ -12,25 +12,31 @@ import java.util.Date
  * 节气库使用同源的 lunar-java（cn.6tail:lunar:1.7.8）。
  * 所有时刻按北京时间（Asia/Shanghai）计算，不依赖设备时区。
  * 时间字符串格式为 "yyyy-MM-dd HH:mm:ss"。
+ *
+ * 固定中文文案（节气名、步名、地支组名、headline 拼接片段）在 resources/wuyun-text.json，
+ * 本文件不含中文字面量。
  */
 object WuyunCalc {
 
     private val SHANGHAI: ZoneId = ZoneId.of("Asia/Shanghai")
 
-    val STEP_NAMES = listOf("初", "二", "三", "四", "五", "终")
-    val BOUNDS = listOf("大寒", "春分", "小满", "大暑", "秋分", "小雪", "DA_HAN")
-    val LABEL = mapOf("DA_HAN" to "大寒")
-    val BRANCH = mapOf(
-        '子' to "子午", '午' to "子午",
-        '丑' to "丑未", '未' to "丑未",
-        '寅' to "寅申", '申' to "寅申",
-        '卯' to "卯酉", '酉' to "卯酉",
-        '辰' to "辰戌", '戌' to "辰戌",
-        '巳' to "巳亥", '亥' to "巳亥",
-    )
+    private val text: WuyunText get() = WuyunTexts.value
+    private val STEP_NAMES: List<String> get() = text.stepNames
+    private val BOUNDS: List<String> get() = text.bounds
+    private val LABEL: Map<String, String> get() = text.label
+    private val BRANCH: Map<String, String> get() = text.branch
 
-    private fun table(y: Int): Map<String, Solar> =
-        Solar.fromYmd(y, 6, 1).lunar.jieQiTable
+    private val tableCache = HashMap<Int, Map<String, Solar>>()
+
+    private fun table(y: Int): Map<String, Solar> {
+        tableCache[y]?.let { return it }
+        synchronized(tableCache) {
+            tableCache[y]?.let { return it }
+            val t: Map<String, Solar> = Solar.fromYmd(y, 6, 1).lunar.jieQiTable
+            tableCache[y] = t
+            return t
+        }
+    }
 
     /** 两个 Solar 之间相差的日历天数（等价于 JS 版 Date.UTC 换算后取整）。 */
     private fun dayNo(a: Solar, b: Solar): Long =
@@ -38,6 +44,7 @@ object WuyunCalc {
             LocalDate.of(a.year, a.month, a.day).toEpochDay()
 
     fun compute(instant: Instant, yunqi: Yunqi60? = null): ComputeResult {
+        val t = text
         val p = instant.atZone(SHANGHAI)
         val now = Solar.fromYmdHms(p.year, p.monthValue, p.dayOfMonth, p.hour, p.minute, p.second)
         val nowStr = now.toYmdHms()
@@ -48,21 +55,22 @@ object WuyunCalc {
         }
         val jq = prev.solar
         var y = p.year
-        var t = table(y)
-        if (nowStr < t["大寒"]!!.toYmdHms()) {
+        var tb = table(y)
+        if (nowStr < tb[BOUNDS[0]]!!.toYmdHms()) {
             // 大寒交节前仍属上一运气年
             y -= 1
-            t = table(y)
+            tb = table(y)
         }
         var step = 0
         for (i in 0..5) {
-            if (nowStr >= t[BOUNDS[i]]!!.toYmdHms() && nowStr < t[BOUNDS[i + 1]]!!.toYmdHms()) step = i + 1
+            if (nowStr >= tb[BOUNDS[i]]!!.toYmdHms() && nowStr < tb[BOUNDS[i + 1]]!!.toYmdHms()) step = i + 1
         }
         val idx = ((y - 4) % 60 + 60) % 60
         val yr = yunqi?.years?.getOrNull(idx)
         val st = yr?.steps?.getOrNull(step - 1)
-        val from = t[BOUNDS[step - 1]]!!
-        val to = t[BOUNDS[step]]!!
+        val from = tb[BOUNDS[step - 1]]!!
+        val to = tb[BOUNDS[step]]!!
+        val h = t.headline
         return ComputeResult(
             jieqi = prev.name,
             jieqiTime = jq.toYmdHms(),
@@ -73,17 +81,17 @@ object WuyunCalc {
             sitian = yr?.sitian,
             zaiquan = yr?.zaiquan,
             step = step,
-            stepName = STEP_NAMES[step - 1] + "之气",
+            stepName = STEP_NAMES[step - 1] + h.qiSuffix,
             from = LABEL[BOUNDS[step - 1]] ?: BOUNDS[step - 1],
             fromTime = from.toYmdHms(),
             to = LABEL[BOUNDS[step]] ?: BOUNDS[step],
             toTime = to.toYmdHms(),
             zhuqi = st?.zhuqi,
             keqi = st?.keqi,
-            headline = prev.name + " · 第 " + (dayNo(jq, now) + 1) + " 天｜" +
-                STEP_NAMES[step - 1] + "之气（" +
-                (LABEL[BOUNDS[step - 1]] ?: BOUNDS[step - 1]) + "—" +
-                (LABEL[BOUNDS[step]] ?: BOUNDS[step]) + "），" +
+            headline = prev.name + h.daySep + (dayNo(jq, now) + 1) + h.dayTail +
+                STEP_NAMES[step - 1] + h.qiSuffix + h.open +
+                (LABEL[BOUNDS[step - 1]] ?: BOUNDS[step - 1]) + h.dash +
+                (LABEL[BOUNDS[step]] ?: BOUNDS[step]) + h.close +
                 (yr?.ganzhi ?: ""),
         )
     }
@@ -107,19 +115,19 @@ object WuyunCalc {
 
     /** 某运气年六步的起止交节时刻（北京时间）。 */
     fun stepsOf(y: Int): List<StepSpan> {
-        val t = table(y)
+        val tb = table(y)
         return (0..5).map { i ->
             StepSpan(
                 step = i + 1,
-                stepName = STEP_NAMES[i] + "之气",
+                stepName = STEP_NAMES[i] + text.headline.qiSuffix,
                 from = LABEL[BOUNDS[i]] ?: BOUNDS[i],
-                fromTime = t[BOUNDS[i]]!!.toYmdHms(),
+                fromTime = tb[BOUNDS[i]]!!.toYmdHms(),
                 to = LABEL[BOUNDS[i + 1]] ?: BOUNDS[i + 1],
-                toTime = t[BOUNDS[i + 1]]!!.toYmdHms(),
+                toTime = tb[BOUNDS[i + 1]]!!.toYmdHms(),
             )
         }
     }
 
     fun branchOf(ganzhi: String?): String? =
-        ganzhi?.let { BRANCH[it[1]] }
+        ganzhi?.let { BRANCH[it[1].toString()] }
 }

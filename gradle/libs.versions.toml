@@ -8,6 +8,7 @@ coreKtx = "1.19.1"
 lifecycle = "2.11.0"
 lunar = "1.7.8"                 # cn.6tail:lunar，与网页版 lunar-javascript 1.7.8 同源同版
 kotlinxSerialization = "1.13.0"
+zxing = "3.5.4"                 # 二维码（分享图里的网页链接）
 junit = "4.13.2"
 
 minSdk = "26"
@@ -17,6 +18,7 @@ compileSdk = "37"
 [libraries]
 lunar = { module = "cn.6tail:lunar", version.ref = "lunar" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+zxing = { module = "com.google.zxing:core", version.ref = "zxing" }
 junit = { module = "junit:junit", version.ref = "junit" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
@@ -25,6 +27,7 @@ compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeB
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 
 [plugins]

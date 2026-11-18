@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">五运六气</string>
+    <string name="ui_drink">喝</string>
+    <string name="ui_press">按</string>
+    <string name="ui_move">动</string>
+    <string name="ui_classic">原文</string>
+    <string name="ui_plain">人话</string>
+    <string name="ui_variants">异文</string>
+    <string name="ui_footer">传统文化参考，不舒服请就医</string>
+    <string name="ui_info_text">六气按古人的六段划分，跟立春、立夏、立秋、立冬不完全对齐，所以一步气可能跨两个季节。</string>
+    <string name="ui_share">分享</string>
+    <string name="ui_share_text">只发文字</string>
+    <string name="ui_share_image">发分享图</string>
 </resources>
