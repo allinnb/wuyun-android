@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     // AGP 9.0 起内置 Kotlin 支持，不再需要 org.jetbrains.kotlin.android
     alias(libs.plugins.kotlin.compose)
+    // life/LocalStore.kt 的 @Serializable 需要编译器插件，缺了运行时报 Serializer not found
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -50,6 +52,7 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
     implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.ui.tooling)
 }

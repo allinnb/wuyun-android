@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "source": "《素问·上古天真论》",
+  "source_note": "底本识典《重广补注黄帝内经素问》，逐字复核待做。",
+  "about": {"zh": "这是两千多年前对一生节律的概括，按七年、八年一个节点来讲，不是个人体检结果。身体有疑问请就医。", "en": "A 2,000-year-old sketch of life rhythm in 7- and 8-year steps. It is cultural reference, not a health check. See a doctor if anything worries you."},
+  "closing": {"classic": "夫道者，能却老而全形，身年虽寿，能生子也。", "zh": "懂得养生之道的人，能延缓衰老、保全身形。", "en": "Those who live by the Way can slow ageing and keep their body whole."},
+  "tracks": [
+    {
+      "id": "seven", "unit": 7, "label": {"zh": "七年节律（女子）", "en": "7-year rhythm (women)"},
+      "classic": "女子七岁，肾气盛，齿更发长。二七而天癸至，任脉通，太冲脉盛，月事以时下，故有子。三七，肾气平均，故真牙生而长极。四七，筋骨坚，发长极，身体盛壮。五七，阳明脉衰，面始焦，发始堕。六七，三阳脉衰于上，面皆焦，发始白。七七，任脉虚，太冲脉衰少，天癸竭，地道不通，故形坏而无子也。",
+      "stages": [
+        {"n": 1, "age": 7, "classic": "女子七岁，肾气盛，齿更发长。", "zh": "换牙、长头发，开始往上长。", "en": "Adult teeth come in and hair grows thick."},
+        {"n": 2, "age": 14, "classic": "二七而天癸至，任脉通，太冲脉盛，月事以时下，故有子。", "zh": "身体进入青春期，开始成熟。", "en": "Puberty arrives and the body begins to mature."},
+        {"n": 3, "age": 21, "classic": "三七，肾气平均，故真牙生而长极。", "zh": "长到头了，智齿也来了。", "en": "Growth peaks; wisdom teeth appear."},
+        {"n": 4, "age": 28, "classic": "四七，筋骨坚，发长极，身体盛壮。", "zh": "古人眼里的巅峰期，骨头硬、头发好、体力足。", "en": "The peak years: strong bones, full hair, plenty of energy."},
+        {"n": 5, "age": 35, "classic": "五七，阳明脉衰，面始焦，发始堕。", "zh": "脸上开始有点倦，头发也会掉一些。睡好比什么护肤都管用。", "en": "The face may look a little tired and hair thins a bit. Good sleep goes a long way."},
+        {"n": 6, "age": 42, "classic": "六七，三阳脉衰于上，面皆焦，发始白。", "zh": "白头发冒出来了，节奏放慢一点也挺好。", "en": "Grey hairs show up. A slower pace suits this stretch."},
+        {"n": 7, "age": 49, "classic": "七七，任脉虚，太冲脉衰少，天癸竭，地道不通，故形坏而无子也。", "zh": "生育期结束，进入新阶段。对自己好一点。", "en": "The fertile years close and a new stage begins. Be kind to yourself."}
+      ]
+    },
+    {
+      "id": "eight", "unit": 8, "label": {"zh": "八年节律（男子）", "en": "8-year rhythm (men)"},
+      "classic": "丈夫八岁，肾气实，发长齿更。二八，肾气盛，天癸至，精气溢泻，阴阳和，故能有子。三八，肾气平均，筋骨劲强，故真牙生而长极。四八，筋骨隆盛，肌肉满壮。五八，肾气衰，发堕齿槁。六八，阳气衰竭于上，面焦，发鬓颁白。七八，肝气衰，筋不能动，天癸竭，精少，肾脏衰，形体皆极。八八，则齿发去。",
+      "stages": [
+        {"n": 1, "age": 8, "classic": "丈夫八岁，肾气实，发长齿更。", "zh": "换牙、长头发，开始往上长。", "en": "Adult teeth come in and hair grows thick."},
+        {"n": 2, "age": 16, "classic": "二八，肾气盛，天癸至，精气溢泻，阴阳和，故能有子。", "zh": "身体进入青春期，开始成熟。", "en": "Puberty arrives and the body begins to mature."},
+        {"n": 3, "age": 24, "classic": "三八，肾气平均，筋骨劲强，故真牙生而长极。", "zh": "长到头了，智齿也来了，筋骨正有劲。", "en": "Growth peaks; wisdom teeth appear and the frame is strong."},
+        {"n": 4, "age": 32, "classic": "四八，筋骨隆盛，肌肉满壮。", "zh": "古人眼里的巅峰期，骨架结实、肌肉饱满。", "en": "The peak years: solid frame, full muscle."},
+        {"n": 5, "age": 40, "classic": "五八，肾气衰，发堕齿槁。", "zh": "头发开始少、牙也要上心了。熬夜的账开始算了。", "en": "Hair thins and teeth need more care. Late nights start to cost more."},
+        {"n": 6, "age": 48, "classic": "六八，阳气衰竭于上，面焦，发鬓颁白。", "zh": "鬓角白了，节奏放慢一点也挺好。", "en": "The temples go grey. A slower pace suits this stretch."},
+        {"n": 7, "age": 56, "classic": "七八，肝气衰，筋不能动，天癸竭，精少，肾脏衰，形体皆极。", "zh": "筋骨没那么灵活了，动作慢点、稳点。", "en": "Joints stiffen. Move slower and steadier."},
+        {"n": 8, "age": 64, "classic": "八八，则齿发去。", "zh": "牙和头发都在提醒你：好好照顾自己。", "en": "Teeth and hair are a reminder: look after yourself."}
+      ]
+    }
+  ]
+}

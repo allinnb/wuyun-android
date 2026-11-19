@@ -29,8 +29,13 @@ class ShareImagesTest {
         }
     }
 
+    private val realHeadline: String by lazy {
+        val instant = WuyunCalc.parseDateParam("2028-01-21T12:00")!!
+        TodayPresenter.build(instant, data).headline
+    }
+
     private fun pngOf(card: Card): ByteArray {
-        val spec = ShareImages.build(card.title, card.share, "headline", FOOTER, URL, accentOf(card.keqi))
+        val spec = ShareImages.build(card.title, card.share, realHeadline, FOOTER, URL, accentOf(card.keqi))
         return AwtShareRenderer.renderPng(spec)
     }
 
@@ -65,7 +70,7 @@ class ShareImagesTest {
             if (shortest == null || c.title.length < shortest.title.length) shortest = c
         }
         for (card in listOf(longest!!, shortest!!)) {
-            val spec = ShareImages.build(card.title, card.share, "h", FOOTER, URL, accentOf(card.keqi))
+            val spec = ShareImages.build(card.title, card.share, realHeadline, FOOTER, URL, accentOf(card.keqi))
             assertEquals("wrap must not lose chars", card.title.replace("\n", ""), spec.titleLines.joinToString(""))
             assertTrue("long title must wrap to multiple lines", spec.titleLines.size >= 1)
         }

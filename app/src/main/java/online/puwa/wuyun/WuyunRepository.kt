@@ -17,5 +17,14 @@ class WuyunRepository(context: Context) {
         )
     }
 
+    /** P2–P4 内容（seasons/shichen/lifecycle/wutai/wuwei/emotions/wuyin.json）。 */
+    val life: online.puwa.wuyun.core.life.LifeData by lazy {
+        online.puwa.wuyun.core.life.LifeData.load { name ->
+            appContext.assets.open(name).use { it.readBytes().toString(Charsets.UTF_8) }
+        }
+    }
+
+    private val appContext = context.applicationContext
+
     fun cardFor(branch: String, step: Int): Card? = data.cardFor(branch, step)
 }

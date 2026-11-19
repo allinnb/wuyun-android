@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "classic": "五味所入：酸入肝，辛入肺，苦入心，咸入肾，甘入脾，是谓五入。",
+  "classic_source": "《素问·宣明五气》",
+  "plain": "古人把味道分成五种，各自对应一个脏。一顿饭味道杂一点，比只吃一种强。",
+  "flavors": [
+    {"id": "suan", "name": "酸", "organ": "肝", "season": "春"},
+    {"id": "ku", "name": "苦", "organ": "心", "season": "夏"},
+    {"id": "gan", "name": "甘", "organ": "脾", "season": "长夏"},
+    {"id": "xin", "name": "辛", "organ": "肺", "season": "秋"},
+    {"id": "xian", "name": "咸", "organ": "肾", "season": "冬"}
+  ],
+  "foods": [
+    {"name": "山楂", "flavor": "suan"}, {"name": "乌梅", "flavor": "suan"}, {"name": "醋", "flavor": "suan"}, {"name": "番茄", "flavor": "suan"},
+    {"name": "苦瓜", "flavor": "ku"}, {"name": "莲子心", "flavor": "ku"}, {"name": "苦菊", "flavor": "ku"}, {"name": "芥蓝", "flavor": "ku"},
+    {"name": "米饭", "flavor": "gan"}, {"name": "山药", "flavor": "gan"}, {"name": "红枣", "flavor": "gan"}, {"name": "南瓜", "flavor": "gan"}, {"name": "小米", "flavor": "gan"},
+    {"name": "生姜", "flavor": "xin"}, {"name": "葱", "flavor": "xin"}, {"name": "白萝卜", "flavor": "xin"}, {"name": "紫苏", "flavor": "xin"},
+    {"name": "海带", "flavor": "xian"}, {"name": "紫菜", "flavor": "xian"}, {"name": "黑豆", "flavor": "xian"}, {"name": "虾", "flavor": "xian"}
+  ],
+  "lines": {
+    "empty": "今天还没记，吃了啥点一下就行。",
+    "even": "五味都沾到了，今天吃得挺匀。",
+    "heavy": "今天{name}味有点多，下一顿换换口。",
+    "missing": "还没碰到{name}味，可以看看{examples}。"
+  }
+}

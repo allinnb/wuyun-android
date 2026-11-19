@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "source": "《灵枢·通天》",
+  "source_note": "底本识典《新刊黄帝内经灵枢》通天第七十二；参校中医世家、古诗文网。",
+  "about": {"zh": "两千年前的人格小测，只当好玩和自我观察。原文说得很狠，我们换成了人话。", "en": "A 2,000-year-old personality sketch, for fun and self-reflection. The original is harsh; we rewrote it kindly."},
+  "types": [
+    {"id": "taiyin", "name": {"zh": "太阴之人", "en": "Deep Yin"},
+     "title": {"zh": "慢热的稳派", "en": "The slow-burning steady one"},
+     "plain": {"zh": "不抢先、不表态，看清了再动。优点是稳，要留意的是别把心事全藏着。", "en": "You hold back, watch, then move. Steady, but don't keep everything inside."},
+     "classic": "太阴之人，贪而不仁，下齐湛湛，好内而恶出，心和而不发，不务于时，动而后之，此太阴之人也。", "classic_note": "“心和而不发”，古诗文网等作“人和而不发”。"},
+    {"id": "shaoyin", "name": {"zh": "少阴之人", "en": "Lesser Yin"},
+     "title": {"zh": "心细的观察家", "en": "The sharp-eyed observer"},
+     "plain": {"zh": "对别人的得失很敏感，算得清。优点是细，要留意的是别老拿自己跟别人比。", "en": "You notice every gain and loss around you. Sharp, but try not to compare so much."},
+     "classic": "少阴之人，小贪而贼心，见人有亡，常若有得，好伤好害，见人有荣，乃反愠怒，心疾而无恩，此少阴之人也。", "classic_note": ""},
+    {"id": "taiyang", "name": {"zh": "太阳之人", "en": "Great Yang"},
+     "title": {"zh": "敢想敢说的大嗓门", "en": "The big-talking go-getter"},
+     "plain": {"zh": "爱聊大事，志向远，做事凭自己。优点是敢，要留意的是做砸了也回头看一眼。", "en": "Big plans, bold talk, your own way. Brave, but look back when something fails."},
+     "classic": "太阳之人，居处于于，好言大事，无能而虚说，志发于四野，举措不顾是非，为事如常自用，事虽败而无常悔，此太阳之人也。", "classic_note": "“事虽败而无常悔”，中医世家等作“事虽败，而常无悔”。"},
+    {"id": "shaoyang", "name": {"zh": "少阳之人", "en": "Lesser Yang"},
+     "title": {"zh": "爱社交的体面人", "en": "The polished social butterfly"},
+     "plain": {"zh": "在意形象，朋友多，对外热情。优点是会来事，要留意的是别冷落身边最近的人。", "en": "Image-conscious and outgoing. Great with people, but don't neglect those closest to you."},
+     "classic": "少阳之人，𬤊谛好自贵，有小小官，则高自宜，好为外交而不内附，此少阳之人也。", "classic_note": "“𬤊谛”，中医世家、古诗文网作“諟谛”或“提谛”，部分版本作“谛好自责”。"},
+    {"id": "he", "name": {"zh": "阴阳和平之人", "en": "Balanced"},
+     "title": {"zh": "情绪稳定的松弛感", "en": "Calm, easy, balanced"},
+     "plain": {"zh": "不慌不喜，不争不抢，顺着变化走，地位高了也客气。古人眼里的君子样。", "en": "Not rattled, not carried away. You go with change and stay humble. The ancients' ideal."},
+     "classic": "阴阳和平之人，居处安静，无为惧惧，无为欣欣，婉然从物，或与不争，与时变化，尊则谦谦，谭而不治，是谓至治。", "classic_note": ""}
+  ],
+  "questions": [
+    {"q": {"zh": "群里有人提议周末出去玩，你：", "en": "Someone in the group chat suggests a weekend trip. You:"},
+     "options": [
+       {"t": {"zh": "先看看谁去，再决定", "en": "Wait to see who's going"}, "type": "taiyin"},
+       {"t": {"zh": "我来定地方！", "en": "I'll pick the place!"}, "type": "taiyang"},
+       {"t": {"zh": "顺便拉上几个新朋友", "en": "Invite a few new friends too"}, "type": "shaoyang"},
+       {"t": {"zh": "有空就去，没空也行", "en": "Sure if I'm free, no big deal if not"}, "type": "he"}]},
+    {"q": {"zh": "同事升职了，你第一反应：", "en": "A coworker gets promoted. Your first thought:"},
+     "options": [
+       {"t": {"zh": "凭什么是他", "en": "Why them?"}, "type": "shaoyin"},
+       {"t": {"zh": "我下一个肯定更厉害", "en": "Mine will be bigger"}, "type": "taiyang"},
+       {"t": {"zh": "赶紧去祝贺，顺便攒人脉", "en": "Congratulate them and network"}, "type": "shaoyang"},
+       {"t": {"zh": "挺好，替他高兴", "en": "Good for them"}, "type": "he"}]},
+    {"q": {"zh": "开会时你通常：", "en": "In meetings you usually:"},
+     "options": [
+       {"t": {"zh": "听完再说，或者不说", "en": "Listen first, maybe say nothing"}, "type": "taiyin"},
+       {"t": {"zh": "抢先抛出大方向", "en": "Jump in with the big vision"}, "type": "taiyang"},
+       {"t": {"zh": "默默记下谁说错了", "en": "Quietly note who got it wrong"}, "type": "shaoyin"},
+       {"t": {"zh": "该说就说，说完就停", "en": "Say what's needed, then stop"}, "type": "he"}]},
+    {"q": {"zh": "计划搞砸了，你会：", "en": "A plan falls apart. You:"},
+     "options": [
+       {"t": {"zh": "没事，下次换个更大的", "en": "Fine, next time go bigger"}, "type": "taiyang"},
+       {"t": {"zh": "很在意别人怎么看", "en": "Worry what people think"}, "type": "shaoyang"},
+       {"t": {"zh": "心里记着，嘴上不提", "en": "Remember it, never mention it"}, "type": "taiyin"},
+       {"t": {"zh": "复盘一下，接着干", "en": "Review it and move on"}, "type": "he"}]},
+    {"q": {"zh": "发朋友圈前你：", "en": "Before posting on social media you:"},
+     "options": [
+       {"t": {"zh": "修图十分钟", "en": "Edit the photo for ten minutes"}, "type": "shaoyang"},
+       {"t": {"zh": "很少发", "en": "Rarely post"}, "type": "taiyin"},
+       {"t": {"zh": "先看看别人发了什么", "en": "Check what others posted first"}, "type": "shaoyin"},
+       {"t": {"zh": "想发就发", "en": "Post whatever, whenever"}, "type": "he"}]},
+    {"q": {"zh": "朋友找你借钱：", "en": "A friend asks to borrow money:"},
+     "options": [
+       {"t": {"zh": "能推就推", "en": "Dodge it if I can"}, "type": "taiyin"},
+       {"t": {"zh": "先算算他之前欠没欠", "en": "Check if they owe me already"}, "type": "shaoyin"},
+       {"t": {"zh": "爽快借，面子要紧", "en": "Lend right away, it's about face"}, "type": "shaoyang"},
+       {"t": {"zh": "量力而行", "en": "Lend what I can afford"}, "type": "he"}]},
+    {"q": {"zh": "别人夸你，你：", "en": "Someone compliments you. You:"},
+     "options": [
+       {"t": {"zh": "那当然", "en": "Obviously"}, "type": "taiyang"},
+       {"t": {"zh": "琢磨他想干嘛", "en": "Wonder what they want"}, "type": "shaoyin"},
+       {"t": {"zh": "回夸一句，气氛到位", "en": "Compliment back, keep it smooth"}, "type": "shaoyang"},
+       {"t": {"zh": "谢谢，然后照常", "en": "Say thanks and carry on"}, "type": "he"}]},
+    {"q": {"zh": "周末理想状态：", "en": "Your ideal weekend:"},
+     "options": [
+       {"t": {"zh": "宅家，谁也别找我", "en": "Stay home, don't call me"}, "type": "taiyin"},
+       {"t": {"zh": "搞个大项目", "en": "Start a big project"}, "type": "taiyang"},
+       {"t": {"zh": "约饭局，见朋友", "en": "Dinners and friends"}, "type": "shaoyang"},
+       {"t": {"zh": "看心情，怎样都舒服", "en": "Whatever feels right"}, "type": "he"}]}
+  ]
+}

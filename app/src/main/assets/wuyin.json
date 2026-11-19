@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "classic_source": "《素问·阴阳应象大论》",
+  "about": "古人把音分成角、徵、宫、商、羽五种，各配一个季节。这里只放免版税的音乐。",
+  "tones": [
+    {"id": "jue", "name": "角", "organ": "肝", "season": "春", "classic": "在藏为肝，在色为苍，在音为角", "mood": "舒展"},
+    {"id": "zhi", "name": "徵", "organ": "心", "season": "夏", "classic": "在藏为心，在色为赤，在音为徵", "mood": "明亮"},
+    {"id": "gong", "name": "宫", "organ": "脾", "season": "长夏", "classic": "在藏为脾，在色为黄，在音为宫", "mood": "安稳"},
+    {"id": "shang", "name": "商", "organ": "肺", "season": "秋", "classic": "在藏为肺，在色为白，在音为商", "mood": "清亮"},
+    {"id": "yu", "name": "羽", "organ": "肾", "season": "冬", "classic": "在藏为肾，在色为黑，在音为羽", "mood": "沉静"}
+  ],
+  "tracks": []
+}
