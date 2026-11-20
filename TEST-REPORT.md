@@ -65,3 +65,18 @@
 ## 环境限制说明
 
 - 本机无硬件虚拟化（WHPX 不可用），模拟器为 swiftshader 软渲染；小组件选择器在 320×480 下按钮互相遮挡无法点选，因此本批截图临时将 AVD 调到 320×720（同设备同系统镜像），拍完已还原。所有截图浅色模式（`ui_night_mode=2`）。
+
+# P2.1 小修测试报告
+
+三处小修，均在 main 上提交。环境：真机 Pixel 9 Pro XL（Android 17，1344×2992），debug APK（带 `--es date` 注入）。`:core:test` **21/21 PASSED**，`assembleDebug`、`lint` 全绿（0 error）。assets JSON 与 :core 算法/测试期望零改动。
+
+| 项 | 内容 | 结果 |
+|---|---|---|
+| 1 交节通知正文 | `ui_notify_body` 改为 `%1$s交%2$s，新的一步气要来了`；新增 `ui_notify_date` = `%1$d 月 %2$d 日`；ReminderReceiver 用 boundaryTime 按 Asia/Shanghai（`LocalDateTime.parse("yyyy-MM-dd HH:mm:ss").atZone(Asia/Shanghai)`）取月/日填入。解析失败时回退旧的前 10 位 | **通过**：真机实发广播，`dumpsys notification --noredact` 记录 `android.text = "11 月 22 日交小雪，新的一步气要来了"`，下拉栏截图 `notification-shade.png` 重拍（新文案 count=1，旧文案 count=0） |
+| 2 情志日记统计行 | `Row` → `FlowRow`（horizontal spacedBy 14dp，vertical 4dp），每项 `Text` 加 `maxLines = 1`（不加省略号，整项「害怕 0」换行不拆字） | **通过**：`record-diary-care.png` 重拍，dump 确认「害怕 0」作为完整 text 节点存在（count=1），聊聊关心提示正常 |
+| 3 深色/大字号截图 | 浅色+深色+`font_scale 1.3` 各拍 时令/生命节律/五态人/情志日记/小组件，文件名后缀 `-dark`、`-font13`；每页滚到底确认页脚 | **10/10 已截**（`reference/screens-p2p4/`）：`season-2026-11-19-dark/-font13`、`test-life-1991-seven-dark/-font13`、`test-wutai-result-dark/-font13`、`record-diary-care-dark/-font13`、`widget-home-dark/-font13`。dump 验证：各页「传统文化参考，不舒服请就医」均在（含深色与 1.3 字号下时令页滚到底 footer=True）；font13 下生命节律显示「35 岁 / age 35」。`season-bottom.png` 为时令页滚到底截图 |
+
+备注：
+- 本轮新增固定文案仅 2 条（均在 strings.xml）：`ui_notify_body`（改写）、`ui_notify_date`（新增）。
+- 真机调试经验（写给后续）：shell 直接 `am broadcast` 到非导出 Receiver 在零售版上会被静默丢弃；正确姿势是 `run-as online.puwa.wuyun am broadcast --user 0 ...`（应用自身身份、显式 `--user 0`）。另外 uiautomator dump 失败时 pull 会拿到旧文件，dump 前先 `rm` 目标文件。
+- 演示用的预置数据（settings.json = 1991/seven，diary.json 3 条难过）已写入真机 files/，截图后保留；手机电量/断连中途有过一次重启，截图均在重连后重取。

@@ -38,6 +38,7 @@
     <string name="ui_save">记下</string>
     <string name="ui_remind">交节提醒</string>
     <string name="ui_notify_channel">交节提醒</string>
-    <string name="ui_notify_body">%1$s 后交%2$s，新的一步气要来了</string>
+    <string name="ui_notify_body">%1$s交%2$s，新的一步气要来了</string>
+    <string name="ui_notify_date">%1$d 月 %2$d 日</string>
     <string name="ui_widget_shichen">%1$s时 · %2$s</string>
 </resources>

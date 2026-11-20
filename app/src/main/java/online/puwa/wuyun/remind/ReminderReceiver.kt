@@ -52,7 +52,15 @@ class ReminderReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
-        val date = if (boundaryTime.length >= 10) boundaryTime.substring(0, 10) else boundaryTime
+        // boundaryTime 是 WuyunCalc.stepsOf 给出的北京时间（yyyy-MM-dd HH:mm:ss），
+        // 按 Asia/Shanghai 取月、日，拼进 ui_notify_date（“%1$d 月 %2$d 日”）。
+        val date = runCatching {
+            val zoned = java.time.LocalDateTime.parse(
+                boundaryTime,
+                java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
+            ).atZone(java.time.ZoneId.of("Asia/Shanghai"))
+            context.getString(R.string.ui_notify_date, zoned.monthValue, zoned.dayOfMonth)
+        }.getOrElse { boundaryTime.take(10) }
         val notif = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_launcher)
             .setContentTitle(stepName)

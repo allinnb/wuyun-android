@@ -78,8 +78,10 @@ fun RecordScreen(now: Instant, life: LifeData, store: LocalStore, modifier: Modi
                 val wk = DiaryStats.weekly(entries, today, e)
                 SectionCard {
                     Text(wk.line, style = MaterialTheme.typography.titleMedium, fontWeight = if (wk.care) FontWeight.Bold else FontWeight.Normal)
-                    Row(horizontalArrangement = Arrangement.spacedBy(14.dp), modifier = Modifier.padding(top = 8.dp)) {
-                        e.emotions.forEach { m -> Text(m.word + " " + (wk.counts[m.id] ?: 0), style = MaterialTheme.typography.bodyMedium) }
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(top = 8.dp)) {
+                        e.emotions.forEach { m ->
+                            Text(m.word + " " + (wk.counts[m.id] ?: 0), style = MaterialTheme.typography.bodyMedium, maxLines = 1)
+                        }
                     }
                 }
                 Text(stringResource(R.string.ui_diary_today), style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(top = 12.dp))
