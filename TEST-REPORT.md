@@ -80,3 +80,17 @@
 - 本轮新增固定文案仅 2 条（均在 strings.xml）：`ui_notify_body`（改写）、`ui_notify_date`（新增）。
 - 真机调试经验（写给后续）：shell 直接 `am broadcast` 到非导出 Receiver 在零售版上会被静默丢弃；正确姿势是 `run-as online.puwa.wuyun am broadcast --user 0 ...`（应用自身身份、显式 `--user 0`）。另外 uiautomator dump 失败时 pull 会拿到旧文件，dump 前先 `rm` 目标文件。
 - 演示用的预置数据（settings.json = 1991/seven，diary.json 3 条难过）已写入真机 files/，截图后保留；手机电量/断连中途有过一次重启，截图均在重连后重取。
+
+# P2.2 测试报告
+
+两处问题：泄露截图历史清洗 + 小组件深色配色。环境：真机 Pixel 9 Pro XL。`:core:test` **21/21 PASSED**，`assembleDebug`、`lint` 全绿（0 error）。JSON、:core 算法/测试期望零改动；无新增权限；无新增文案。
+
+| 项 | 内容 | 结果 |
+|---|---|---|
+| 1 泄露截图清洗 | `test-life-1991-seven-font13.png`（错拍成手机桌面，暴露 App 列表）以及 `widget-home*.png`、`notification-shade.png`（含桌面应用/其他通知）共 5 个路径，用 git-filter-repo 从全部历史删除（`--invert-paths`），force push main；之后以裁剪/重拍后的干净版本重新提交 | **完成**：filter-repo 2.47.0 重写全部历史后 force push；泄露 blob 已不在任何 commit 中（`git log --all -- <paths>` 只剩干净版提交） |
+| 1a 重拍 | 测一测→生命节律（settings 1991/seven，font_scale 1.3）：dump 确认同屏含「35 岁 / age 35」与「五七，阳明脉衰，面始焦，发始堕」原文，重拍 `test-life-1991-seven-font13.png` | **通过**（314KB 应用页图，替换 2.2MB 桌面图） |
+| 1b 裁剪 | `widget-home.png/-dark/-font13.png` 按 uiautomator 的 `widget_root` bounds + 48px 边距裁剪，只保留小组件本体；`notification-shade.png` 裁剪为本应用通知卡片（五运六气 / 终之气 / 11 月 22 日交小雪…） | **完成**：裁剪后尺寸 1314×519 / 1314×584 / 1028×267 |
+| 1c 其余截图审计 | `reference/screens/`（5 张，模拟器内容）、`reference/share-samples/`（3 张，程序生成）、`reference/screens-p2p4/` 其余 10 张（均为应用内页面，状态栏仅系统图标）逐一核对来源，无桌面 App 列表或其他 App 通知内容 | **通过，无需改动** |
+| 2 小组件深色 | 新增 `res/values-night/colors.xml`（widget_title #EDEDED、widget_sub #CFCFCF、widget_accent #64B5F6）与 `res/drawable-night/widget_bg.xml`（#1E1E1E），均与 App 深色页 darkColorScheme 一致；`widget_wuyun.xml` 的 textColor 改引用 @color | **通过**：真机深色模式截图像素验证——widget 底色 (30,30,30)=#1E1E1E、标题 (237,237,237)=#EDEDED、强调色 (100,181,246)=#64B5F6；对比度约 13:1。浅色版保持 #FAFAF7/#1A1A1A/#555/#1565C0 不变。`widget-home-dark.png` 重拍 |
+
+备注：历史重写后旧 blob 在 GitHub 服务端缓存中可能短暂残留，如需彻底清除可联系 GitHub Support 触发 GC；本地与远程 main 已完全同步于重写后的历史。

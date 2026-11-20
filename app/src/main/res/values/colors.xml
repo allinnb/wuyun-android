@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 小组件文字色：浅色与 App 浅色主题一致（onBackground/onSurfaceVariant/蓝强调） -->
+    <color name="widget_title">#1A1A1A</color>
+    <color name="widget_sub">#555555</color>
+    <color name="widget_accent">#1565C0</color>
+</resources>

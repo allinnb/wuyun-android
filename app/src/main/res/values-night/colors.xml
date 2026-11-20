@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 小组件文字色（深色）：与 App 深色页 darkColorScheme 一致 -->
+    <color name="widget_title">#EDEDED</color>
+    <color name="widget_sub">#CFCFCF</color>
+    <color name="widget_accent">#64B5F6</color>
+</resources>
